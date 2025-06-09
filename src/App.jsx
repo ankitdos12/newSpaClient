@@ -21,6 +21,9 @@ import UserProfile from './pages/UserProfile';
 import WhatsAppWidget from './components/widgets/WhatsAppWidget';
 import MembershipPage from './pages/Membership';
 import ServicesComingSoon from './pages/ServicesComingSoon';
+import Careers from './components/pages/Careers';
+import Apply from './components/pages/Apply';
+import JobDetails from './components/pages/JobDetails';
 
 const App = () => {
   return (
@@ -49,9 +52,12 @@ const App = () => {
             <Route path="/nearby-spa" element={<NearbySpasPage />} />
             <Route path="/popular-spas" element={<PopularSpasPage />} />
             <Route path="/recent-spas" element={<RecentSpasPage />} />
-            <Route path="/user-profile" element={<UserProfile />} />\
+            <Route path="/user-profile" element={<UserProfile />} />
             <Route path="/membership" element={<MembershipPage />} />
             <Route path="/coming-soon" element={<ServicesComingSoon />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/apply/:id" element={<Apply />} />
+            <Route path="/job-details/:id" element={<JobDetails />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </FilterProvider>

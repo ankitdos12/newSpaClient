@@ -25,7 +25,7 @@ const BookingPage = () => {
         try {
             const userData = JSON.parse(localStorage.getItem('userData')) || {};
             const user = userData?.user || {};
-            
+
             return {
                 name: user.username || '',
                 email: user.email || '',
@@ -86,7 +86,7 @@ const BookingPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const token = localStorage.getItem('token');
-        
+
         if (!token) {
             navigate('/login', { state: { from: location.pathname, service, spaId } });
             return;
