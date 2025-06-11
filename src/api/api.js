@@ -7,6 +7,7 @@ export const getSpas = async () => {
     const response = await axios.get(`${API_URL}/spas`);
     return response.data.data;
 };
+
 // Get spa by ID
 export const getSpaById = async (id) => {
     const response = await axios.get(`${API_URL}/spas/${id}`);
@@ -26,14 +27,14 @@ export const login = async (userData) => {
 };
 
 //spa BookingPage
-export const addBooking = async (payload, token) => {
-    const response = await axios.post(`${API_URL}/bookings`, payload, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    });
-    return response.data;
-}
+// export const addBooking = async (payload, token) => {
+//     const response = await axios.post(`${API_URL}/bookings`, payload, {
+//         headers: {
+//             Authorization: `Bearer ${token}`
+//         }
+//     });
+//     return response.data;
+// }
 
 // Get user profile
 export const getUserProfile = async (token) => {
@@ -44,6 +45,46 @@ export const getUserProfile = async (token) => {
     });
     return response.data;
 };
+
+// Add membership
+export const addMembership = async (membershipData, token) => {
+    const response = await axios.post(`${API_URL}/auth/membership`, membershipData, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    return response.data;
+};
+
+// Cancel membership
+export const cancelMembership = async (token) => {
+    const response = await axios.delete(`${API_URL}/auth/membership`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    return response.data;
+};
+
+// Get membership details
+export const getMembership = async (token) => {
+    const response = await axios.get(`${API_URL}/auth/membership`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    return response.data;
+};
+
+//spa BookingPage
+export const addBooking = async (payload, token) => {
+    const response = await axios.post(`${API_URL}/bookings`, payload, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    return response.data;
+}
 
 // inquirySpa 
 export const createInquiry = async (inquiryData) => {

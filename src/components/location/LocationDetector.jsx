@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { LocationContext } from '../../context/LocationContext';
 import LocationDisplay from './LocationDisplay';
 import { Link } from 'react-router-dom';
-import { IoSearch } from "react-icons/io5";
+import { FaLocationArrow } from "react-icons/fa6";
 
 const LocationDetector = () => {
     const { userLocation, locationError, isLoading, detectLocation } = useContext(LocationContext);
@@ -19,7 +19,7 @@ const LocationDetector = () => {
                         className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-5 py-3 rounded-lg transition-all"
                     >
                         <span>Search Spa Near You</span>
-                        <IoSearch size={20} />
+                        <FaLocationArrow size={20} />
                     </Link>
                 </div>
             </div>

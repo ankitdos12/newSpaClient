@@ -1,143 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion'; 
+import { motion } from 'framer-motion';
+import { IoChatbubblesOutline } from "react-icons/io5";
+import { MdOutlineMiscellaneousServices, MdOutlineSupportAgent } from "react-icons/md";
+import { membershipPlans, benefits, faqs } from '../data/membershipData';
+
+
 
 const MembershipPage = () => {
     const [duration, setDuration] = useState('monthly');
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []); 
-
-    const [openFaq, setOpenFaq] = useState(null);
-    const navigate = useNavigate();
-
-    const membershipPlans = [
-        {
-            title: "Basic",
-            monthlyPrice: "₹999",
-            yearlyPrice: "₹9,990",
-            features: [
-                "Access to basic spa services",
-                "2 massage sessions per month",
-                "10% discount on additional services",
-                "Basic amenities access"
-            ],
-            popular: false,
-            backgroundColor: "bg-white"
-        },
-        {
-            title: "Premium",
-            monthlyPrice: "₹2,499",
-            yearlyPrice: "₹24,990",
-            features: [
-                "Access to all spa services",
-                "5 massage sessions per month",
-                "20% discount on additional services",
-                "Premium amenities access",
-                "Priority booking"
-            ],
-            popular: true,
-            backgroundColor: "bg-blue-50"
-        },
-        {
-            title: "VIP",
-            monthlyPrice: "₹4,999",
-            yearlyPrice: "₹49,990",
-            features: [
-                "Unlimited spa services",
-                "10 massage sessions per month",
-                "30% discount on additional services",
-                "Premium amenities access",
-                "Priority booking",
-                "Personal spa consultant"
-            ],
-            popular: false,
-            backgroundColor: "bg-white"
-        }
-    ];
-
-    const benefits = [
-        {
-            title: "Exclusive Access",
-            description: "Get priority booking and exclusive access to premium spa facilities",
-            icon: "🌟"
-        },
-        {
-            title: "Save More",
-            description: "Up to 30% savings on regular spa services and treatments",
-            icon: "💰"
-        },
-        {
-            title: "Flexibility",
-            description: "Book sessions at multiple locations across the city",
-            icon: "📍"
-        },
-        {
-            title: "Wellness Journey",
-            description: "Personalized wellness plans and progress tracking",
-            icon: "🎯"
-        }
-    ];
-
-    const faqs = [
-        {
-            question: "How does the membership work?",
-            answer: "Our membership gives you access to premium spa services at discounted rates. Choose your plan, book sessions easily, and enjoy exclusive benefits."
-        },
-        {
-            question: "Can I cancel my membership anytime?",
-            answer: "Yes, you can cancel your membership with a 30-day notice period. Any unused sessions will remain valid until the end of your billing cycle."
-        },
-        {
-            question: "Are the sessions transferable?",
-            answer: "Sessions are non-transferable and linked to your personal membership account for security reasons."
-        },
-        {
-            question: "How do I book sessions?",
-            answer: "You can book sessions through our mobile app or website. Premium and VIP members get priority booking privileges."
-        },
-        {
-            question: "What happens if I need to reschedule?",
-            answer: "You can reschedule your appointment up to 4 hours before the scheduled time without any charges through our app or website."
-        },
-        {
-            question: "Is there a satisfaction guarantee?",
-            answer: "Yes! We offer a 100% satisfaction guarantee. If you're not happy with your service, we'll either redo it or refund your session."
-        },
-        {
-            question: "How do I contact customer support?",
-            answer: "We offer 24/7 support through live chat, email at support@spados.com, or call us at 1800-XXX-XXXX."
-        }
-    ];
 
     const supportFeatures = [
         {
             title: "24/7 Support",
             description: "Our dedicated team is available round the clock to assist you",
-            icon: "🎧"
+            icon: <MdOutlineSupportAgent />
         },
         {
             title: "Instant Chat",
             description: "Get quick responses through our live chat support",
-            icon: "💬"
+            icon: <IoChatbubblesOutline />
         },
         {
             title: "Priority Service",
             description: "Premium members get priority customer support",
-            icon: "⭐"
+            icon: <MdOutlineMiscellaneousServices />
         }
     ];
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+
+    const [openFaq, setOpenFaq] = useState(null);
+    const navigate = useNavigate();
 
     const handlePlanSelect = (plan) => {
         const token = localStorage.getItem('token');
         if (!token) {
-            navigate('/coming-soon');
+            navigate('/login');
             return;
         }
 
-        // Navigate to payment dashboard with plan details
-        navigate('/coming-soon', {
+        // Navigate to checkout page with plan details
+        navigate('/checkout', {
             state: {
                 plan: {
                     ...plan,
@@ -271,8 +178,15 @@ const MembershipPage = () => {
                                         </li>
                                     ))}
                                 </ul>
+                                {/* navigate('/coming-soon') */}
+                                {/* <button
+                                    onClick={() => navigate('/coming-soon')}
+                                    className="mt-8 w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"
+                                >
+                                    Get Started
+                                </button> */}
                                 <button
-                                    onClick={() => handlePlanSelect(plan)}
+                                    onClick={() =>handlePlanSelect(plan)}
                                     className="mt-8 w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"
                                 >
                                     Get Started
@@ -292,7 +206,7 @@ const MembershipPage = () => {
                 className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16"
             >
                 <h2 className="text-3xl font-bold text-center mb-12">Why Choose Our Membership?</h2>
-                <motion.div className="grid md:grid-cols-4 gap-8">
+                <motion.div className="grid md:grid-cols-4 gap-8 ">
                     {benefits.map((benefit, index) => (
                         <motion.div
                             key={index}
@@ -373,7 +287,7 @@ const MembershipPage = () => {
                             whileHover={{ scale: 1.05 }}
                             className="bg-white p-6 rounded-lg shadow-md text-center"
                         >
-                            <div className="text-4xl mb-4">{feature.icon}</div>
+                            <div className="text-4xl mb-4 flex justify-center items-center">{feature.icon}</div>
                             <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
                             <p className="text-gray-600">{feature.description}</p>
                         </motion.div>

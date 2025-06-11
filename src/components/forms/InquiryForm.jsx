@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { createInquiry } from "../../api/api.js";
+import { MdErrorOutline } from "react-icons/md";
 
 const InquiryForm = ({ onClose }) => {
     const [formData, setFormData] = useState({
@@ -15,10 +16,12 @@ const InquiryForm = ({ onClose }) => {
         setError(null);
 
         try {
-            await createInquiry(formData);
+            const res = await createInquiry(formData);
+
+            console.log(res);
             onClose();
-        } catch (err) {
-            setError(err.message || 'Failed to submit inquiry');
+        } catch (error) {
+            setError('Provide a valid 10-digit phone number');
         } finally {
             setLoading(false);
         }
@@ -35,6 +38,14 @@ const InquiryForm = ({ onClose }) => {
                         </svg>
                     </button>
                 </div>
+                {error && (
+                    <div className="mb-4 flex items-center gap-1 p-3 text-red-700">
+                        <MdErrorOutline />
+                        <p className="flex items-center">
+                            {error}
+                        </p>
+                    </div>
+                )}
                 <form onSubmit={handleSubmit}>
                     <div className="space-y-4">
                         <input
@@ -53,9 +64,6 @@ const InquiryForm = ({ onClose }) => {
                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         />
 
-                        {error && (
-                            <p className="text-red-500 text-sm">{error}</p>
-                        )}
                         <button
                             type="submit"
                             disabled={loading}

@@ -149,7 +149,7 @@ const HomePage = () => {
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
                         <div className="text-center">
-                            <div className="text-3xl font-bold text-blue-600 mb-2">200+</div>
+                            <div className="text-3xl font-bold text-blue-600 mb-2">180+</div>
                             <div className="text-gray-600">Verified Spas</div>
                         </div>
                         <div className="text-center">
@@ -165,14 +165,6 @@ const HomePage = () => {
                             <div className="text-gray-600">User Rating</div>
                         </div>
                     </div>
-
-                    {/* <div className="flex flex-wrap justify-center gap-8 items-center text-gray-400">
-                        <span>Featured in:</span>
-                        <img src="https://assets.upstox.com/content/assets/images/cms/202451/Amazon%20logo.png" alt="Times of India" className="h-8 grayscale opacity-50" />
-                        <img src="/images/et.png" alt="Economic Times" className="h-8 grayscale opacity-50" />
-                        <img src="/images/hindu.png" alt="The Hindu" className="h-8 grayscale opacity-50" />
-                        <img src="/images/mint.png" alt="Mint" className="h-8 grayscale opacity-50" />
-                    </div> */}
                 </div>
 
                 {/* Nearby Spas */}
@@ -279,7 +271,7 @@ const HomePage = () => {
                                     text: "As someone who travels frequently, this platform helps me find quality spas wherever I go. Highly recommended!",
                                     rating: 5
                                 },
-                              
+
                                 {
                                     name: "Ravi Kumar",
                                     role: "Frequent Visitor",

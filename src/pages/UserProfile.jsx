@@ -7,7 +7,8 @@ const UserProfile = () => {
         username: '',
         email: '',
         phoneNumber: '',
-        role: ''
+        role: '',
+        membership: null
     });
     const [bookings, setBookings] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -35,7 +36,8 @@ const UserProfile = () => {
                         username: response.data.user.username,
                         email: response.data.user.email,
                         phoneNumber: response.data.user.phoneNumber,
-                        role: response.data.user.role
+                        role: response.data.user.role,
+                        membership: response.data.user.membership || null
                     });
 
                     setBookings(response.data.bookings || []);
@@ -169,6 +171,53 @@ const UserProfile = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* Membership Card */}
+                {userData.membership ? (
+                    <div className="bg-white rounded-lg shadow-xl overflow-hidden mb-8">
+                        <div className="p-8">
+                            <h2 className="text-2xl font-bold mb-6">Membership Details</h2>
+                            <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-6 text-white">
+                                <div className="flex justify-between items-start mb-4">
+                                    <div>
+                                        <h3 className="text-xl font-semibold mb-2">{userData.membership.plan} Plan</h3>
+                                        <p className="text-blue-100">Member since: {new Date(userData.membership.startDate).toLocaleDateString()}</p>
+                                    </div>
+                                    <div className="text-right">
+                                        <p className="text-sm text-blue-100">Valid until</p>
+                                        <p className="text-lg font-semibold">{new Date(userData.membership.endDate).toLocaleDateString()}</p>
+                                    </div>
+                                </div>
+                                <div className="border-t border-blue-400 pt-4 mt-4">
+                                    <h4 className="text-lg font-semibold mb-2">Benefits:</h4>
+                                    <ul className="list-disc list-inside text-blue-100">
+                                        {userData.membership.benefits.map((benefit, index) => (
+                                            <li key={index}>{benefit}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="mt-4 text-sm text-blue-100">
+                                    Membership ID: {userData.membership.id}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="bg-white rounded-lg shadow-xl overflow-hidden mb-8">
+                        <div className="p-8">
+                            <div className="text-center">
+                                <h2 className="text-2xl font-bold mb-4">No Active Membership</h2>
+                                <p className="text-gray-600 mb-6">Upgrade to a membership plan to enjoy exclusive benefits and special offers!</p>
+                                <button
+                                    onClick={() => navigate('/membership')}
+                                    className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300"
+                                >
+                                    View Membership Plans
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {/* Bookings Section */}
                 <div className="bg-white rounded-lg shadow-xl overflow-hidden">

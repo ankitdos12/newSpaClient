@@ -24,6 +24,10 @@ import ServicesComingSoon from './pages/ServicesComingSoon';
 import Careers from './components/pages/Careers';
 import Apply from './components/pages/Apply';
 import JobDetails from './components/pages/JobDetails';
+import Checkout from './pages/Checkout';
+import PaymentSuccess from './pages/PaymentSuccess';
+
+import MembershipCards from './pages/MembershipCards';
 
 const App = () => {
   return (
@@ -58,6 +62,9 @@ const App = () => {
             <Route path="/careers" element={<Careers />} />
             <Route path="/apply/:id" element={<Apply />} />
             <Route path="/job-details/:id" element={<JobDetails />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/payment-success" element={<PaymentSuccess />} />
+            <Route path="/membership-cards" element={<MembershipCards />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </FilterProvider>
